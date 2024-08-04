@@ -11,6 +11,13 @@ declare global {
 				bio: string;
 			} | null;
 		}
+		namespace Superforms {
+			type Message = {
+				status: Number;
+				type: 'error' | 'success';
+				text: string;
+			};
+		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}

@@ -5,8 +5,8 @@
 
 	onMount(() => {
 		setTimeout(() => {
-			window.location.href = '/'; // Replace with your desired URL
-		}, 3000); // 5000 milliseconds = 5 seconds
+			window.location.href = '/';
+		}, 500);
 	});
 </script>
 

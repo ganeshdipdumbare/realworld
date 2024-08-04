@@ -1,5 +1,5 @@
 import { Zodios } from '@zodios/core';
-import { z } from 'zod';
+import { map, z } from 'zod';
 import { loginFormSchema } from '../routes/login/schema';
 
 export const apiClient = new Zodios(
@@ -34,7 +34,15 @@ export const apiClient = new Zodios(
 					image: z.string().optional(),
 					token: z.string()
 				})
-			})
+			}),
+			errors: [
+				{
+					status: 422,
+					schema: z.object({
+						errors: map(z.string(), z.array(z.string()))
+					})
+				}
+			]
 		},
 		{
 			method: 'post',
@@ -73,9 +81,7 @@ export const apiClient = new Zodios(
 				{
 					status: 422,
 					schema: z.object({
-						errors: z.object({
-							body: z.array(z.string())
-						})
+						errors: map(z.string(), z.array(z.string()))
 					})
 				}
 			]

@@ -1,14 +1,12 @@
 <script lang="ts">
+	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
-	import * as Card from '$lib/components/ui/card';
-	import { Label } from '$lib/components/ui/label';
-	import * as Select from '$lib/components/ui/select';
-	import { Button } from '$lib/components/ui/button';
-	import { loginFormSchema, type LoginFormSchema } from './schema';
-	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
+	import { type Infer, superForm, type SuperValidated } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { enhance } from '$app/forms';
+	import { loginFormSchema, type LoginFormSchema } from './schema';
+	import * as Alert from '$lib/components/ui/alert';
+	import { ExclamationTriangle } from 'svelte-radix';
 
 	export let data: SuperValidated<Infer<LoginFormSchema>>;
 
@@ -16,10 +14,7 @@
 		validators: zodClient(loginFormSchema)
 	});
 
-	const { form: formData } = form;
-	function handleSubmit() {
-		console.log('Form submitted');
-	}
+	const { form: formData, enhance, message } = form;
 </script>
 
 <Card.Root class="w-[350px]">
@@ -28,7 +23,7 @@
 		<Card.Description>Login to your account.</Card.Description>
 	</Card.Header>
 	<Card.Content>
-		<form method="POST" use:enhance on:submit={handleSubmit}>
+		<form method="POST" use:enhance>
 			<Form.Field {form} name="email">
 				<Form.Control let:attrs>
 					<Form.Label>Email</Form.Label>
@@ -46,6 +41,15 @@
 				<Form.FieldErrors />
 			</Form.Field>
 			<Form.Button class="w-full">Login</Form.Button>
+			{#if $message?.type === 'error'}
+				<div class="mt-4">
+					<Alert.Root variant="destructive">
+						<ExclamationTriangle class="h-4 w-4" />
+						<Alert.Title>Error</Alert.Title>
+						<Alert.Description>{$message.text}</Alert.Description>
+					</Alert.Root>
+				</div>
+			{/if}
 		</form>
 	</Card.Content>
 </Card.Root>
