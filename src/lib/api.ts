@@ -35,6 +35,50 @@ export const apiClient = new Zodios(
 					token: z.string()
 				})
 			})
+		},
+		{
+			method: 'post',
+			path: '/users', // auto detect :id and ask for it in apiClient get params
+			alias: 'signupUser', // optional alias to call this endpoint with it
+			description: 'Signup user',
+			requestFormat: 'json',
+			requestHeaders: {
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+			},
+			parameters: [
+				{
+					name: 'user',
+					type: 'Body',
+					schema: z.object({
+						user: z.object({
+							username: z.string(),
+							email: z.string().email(),
+							password: z.string().min(8)
+						})
+					})
+				}
+			],
+			response: z.object({
+				user: z.object({
+					email: z.string().email(),
+					username: z.string(),
+					image: z.string().optional(),
+					token: z.string()
+				})
+			}),
+			errors: [
+				{
+					status: 422,
+					schema: z.object({
+						errors: z.object({
+							body: z.array(z.string())
+						})
+					})
+				}
+			]
 		}
 	]
 );

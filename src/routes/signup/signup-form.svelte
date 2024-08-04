@@ -5,15 +5,15 @@
 	import { Label } from '$lib/components/ui/label';
 	import * as Select from '$lib/components/ui/select';
 	import { Button } from '$lib/components/ui/button';
-	import { loginFormSchema, type LoginFormSchema } from './schema';
+	import { signupFormSchema, type SignupFormSchema } from './schema';
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { enhance } from '$app/forms';
 
-	export let data: SuperValidated<Infer<LoginFormSchema>>;
+	export let data: SuperValidated<Infer<SignupFormSchema>>;
 
 	const form = superForm(data, {
-		validators: zodClient(loginFormSchema)
+		validators: zodClient(signupFormSchema)
 	});
 
 	const { form: formData } = form;
@@ -29,6 +29,14 @@
 	</Card.Header>
 	<Card.Content>
 		<form method="POST" use:enhance on:submit={handleSubmit}>
+			<Form.Field {form} name="username">
+				<Form.Control let:attrs>
+					<Form.Label>Username</Form.Label>
+					<Input {...attrs} bind:value={$formData.username} />
+				</Form.Control>
+				<Form.Description>This is your public display name.</Form.Description>
+				<Form.FieldErrors />
+			</Form.Field>
 			<Form.Field {form} name="email">
 				<Form.Control let:attrs>
 					<Form.Label>Email</Form.Label>
@@ -45,7 +53,7 @@
 				<Form.Description>Enter your password.</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
-			<Form.Button>Sign in</Form.Button>
+			<Form.Button>Sign up</Form.Button>
 		</form>
 	</Card.Content>
 </Card.Root>

@@ -35,7 +35,7 @@
 					</Menubar.Menu>
 					<Menubar.Menu>
 						<Menubar.Trigger>
-							<button type="button" on:click={() => goto('/login')}>Hello</button>
+							<button type="button" on:click={() => goto('/dashboard')}>Dashboard</button>
 						</Menubar.Trigger>
 					</Menubar.Menu>
 					<Menubar.Menu>
