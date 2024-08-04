@@ -1,21 +1,13 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import * as Menubar from '$lib/components/ui/menubar/index.js';
-	import { goto, invalidate } from '$app/navigation';
-	import { derived } from 'svelte/store';
 	import { Button } from '$lib/components/ui/button';
-	import Sun from 'svelte-radix/Sun.svelte';
-	import Moon from 'svelte-radix/Moon.svelte';
-
+	import * as Menubar from '$lib/components/ui/menubar/index.js';
 	import { toggleMode } from 'mode-watcher';
-
-	const currentPath = derived(page, ($page) => $page.url.pathname);
-
-	function getClass(path: string) {
-		let activePath;
-		currentPath.subscribe((value) => (activePath = value));
-		return activePath === path ? 'font-bold text-blue-600' : '';
-	}
+	import Moon from 'svelte-radix/Moon.svelte';
+	import Sun from 'svelte-radix/Sun.svelte';
+	import UserProfile from './UserProfile.svelte';
+	import { date } from 'zod';
 </script>
 
 <nav class="fixed left-0 right-0 top-0 flex h-16 items-center">
@@ -40,9 +32,7 @@
 					</Menubar.Menu>
 					<Menubar.Menu>
 						<Menubar.Trigger>
-							<button type="button" on:click={() => goto('/logout')} data-sveltekit-reload
-								>Logout</button
-							>
+							<UserProfile />
 						</Menubar.Trigger>
 					</Menubar.Menu>
 				{:else}

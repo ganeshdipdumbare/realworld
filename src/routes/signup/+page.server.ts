@@ -14,7 +14,6 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
 		const form = await request.formData();
-
 		// validate the form here
 		// if the form is invalid, return the errors
 		// if the form is valid, call the login API

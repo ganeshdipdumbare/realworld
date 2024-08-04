@@ -53,7 +53,7 @@
 				<Form.Description>Enter your password.</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
-			<Form.Button>Sign up</Form.Button>
+			<Form.Button class="w-full">Sign up</Form.Button>
 		</form>
 	</Card.Content>
 </Card.Root>

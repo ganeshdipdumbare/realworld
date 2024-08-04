@@ -45,7 +45,7 @@
 				<Form.Description>Enter your password.</Form.Description>
 				<Form.FieldErrors />
 			</Form.Field>
-			<Form.Button>Sign in</Form.Button>
+			<Form.Button class="w-full">Login</Form.Button>
 		</form>
 	</Card.Content>
 </Card.Root>
