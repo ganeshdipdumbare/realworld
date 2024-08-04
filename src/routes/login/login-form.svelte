@@ -5,15 +5,15 @@
 	import { Label } from '$lib/components/ui/label';
 	import * as Select from '$lib/components/ui/select';
 	import { Button } from '$lib/components/ui/button';
-	import { signinFormSchema, type SigninFormSchema } from './schema';
+	import { loginFormSchema, type LoginFormSchema } from './schema';
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { enhance } from '$app/forms';
 
-	export let data: SuperValidated<Infer<SigninFormSchema>>;
+	export let data: SuperValidated<Infer<LoginFormSchema>>;
 
 	const form = superForm(data, {
-		validators: zodClient(signinFormSchema)
+		validators: zodClient(loginFormSchema)
 	});
 
 	const { form: formData } = form;

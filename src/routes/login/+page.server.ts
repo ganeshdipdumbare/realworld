@@ -1,13 +1,13 @@
-import type { PageServerLoad, Actions } from './$types.js';
+import type { PageServerLoad, Actions } from './$types';
 import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { signinFormSchema } from './schema.js';
+import { loginFormSchema } from './schema.js';
 import { apiClient } from '$lib/api.ts';
 import { fail, redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async () => {
 	return {
-		form: await superValidate(zod(signinFormSchema))
+		form: await superValidate(zod(loginFormSchema))
 	};
 };
 
@@ -18,7 +18,7 @@ export const actions: Actions = {
 		// validate the form here
 		// if the form is invalid, return the errors
 		// if the form is valid, call the login API
-		const validatedForm = await superValidate(form, zod(signinFormSchema));
+		const validatedForm = await superValidate(form, zod(loginFormSchema));
 		if (!validatedForm.valid) {
 			return fail(400, {
 				validatedForm

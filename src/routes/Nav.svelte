@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import * as Menubar from '$lib/components/ui/menubar/index.js';
-	import { goto } from '$app/navigation';
+	import { goto, invalidate } from '$app/navigation';
 	import { derived } from 'svelte/store';
 	import { Button } from '$lib/components/ui/button';
 	import Sun from 'svelte-radix/Sun.svelte';
@@ -16,11 +16,6 @@
 		currentPath.subscribe((value) => (activePath = value));
 		return activePath === path ? 'font-bold text-blue-600' : '';
 	}
-
-	let bookmarks = false;
-	let fullUrls = true;
-
-	const profileRadioValue = 'benoit';
 </script>
 
 <nav class="fixed left-0 right-0 top-0 flex h-16 items-center">
@@ -40,12 +35,14 @@
 					</Menubar.Menu>
 					<Menubar.Menu>
 						<Menubar.Trigger>
-							<button type="button" on:click={() => goto('/signin')}>Hello</button>
+							<button type="button" on:click={() => goto('/login')}>Hello</button>
 						</Menubar.Trigger>
 					</Menubar.Menu>
 					<Menubar.Menu>
 						<Menubar.Trigger>
-							<button type="button">Sign out</button>
+							<button type="button" on:click={() => goto('/logout')} data-sveltekit-reload
+								>Logout</button
+							>
 						</Menubar.Trigger>
 					</Menubar.Menu>
 				{:else}
@@ -56,12 +53,12 @@
 					</Menubar.Menu>
 					<Menubar.Menu>
 						<Menubar.Trigger>
-							<button type="button" on:click={() => goto('/signin')}>Sign in</button>
+							<button type="button" on:click={() => goto('/login')}>Login</button>
 						</Menubar.Trigger>
 					</Menubar.Menu>
 					<Menubar.Menu>
 						<Menubar.Trigger>
-							<button type="button">Sign up</button>
+							<button type="button" on:click={() => goto('/signup')}>Sign up</button>
 						</Menubar.Trigger>
 					</Menubar.Menu>
 				{/if}

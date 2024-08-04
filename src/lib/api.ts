@@ -1,6 +1,6 @@
 import { Zodios } from '@zodios/core';
 import { z } from 'zod';
-import { signinFormSchema } from '../routes/signin/schema';
+import { loginFormSchema } from '../routes/login/schema';
 
 export const apiClient = new Zodios(
 	'https://api.realworld.io/api',
@@ -23,7 +23,7 @@ export const apiClient = new Zodios(
 					name: 'user',
 					type: 'Body',
 					schema: z.object({
-						user: signinFormSchema
+						user: loginFormSchema
 					})
 				}
 			],

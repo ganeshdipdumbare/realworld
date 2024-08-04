@@ -13,5 +13,7 @@
 <ModeWatcher />
 <div class="flex min-h-screen flex-col">
 	<Nav />
-	<slot />
+	<div class="flex min-h-screen items-center justify-center p-4">
+		<slot />
+	</div>
 </div>

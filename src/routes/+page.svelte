@@ -1,13 +1,10 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
-{#if $page.data.user}
-	<div class="flex min-h-screen items-center justify-center p-4">
-		<p>Welcome back, {$page.data.user.username}!</p>
-	</div>
+{#if data.user}
+	<p>Welcome back, {data.user.username}!</p>
 {:else}
-	<div class="flex min-h-screen items-center justify-center p-4">
-		<p>Sign in to access your account.</p>
-	</div>
+	<p>Sign in to access your account.</p>
 {/if}
