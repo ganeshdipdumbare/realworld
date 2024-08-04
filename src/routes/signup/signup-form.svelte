@@ -24,8 +24,8 @@
 
 <Card.Root class="w-[350px]">
 	<Card.Header>
-		<Card.Title>Create project</Card.Title>
-		<Card.Description>Deploy your new project in one-click.</Card.Description>
+		<Card.Title>Sign up</Card.Title>
+		<Card.Description>Sign up and start using the app.</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<form method="POST" use:enhance on:submit={handleSubmit}>
