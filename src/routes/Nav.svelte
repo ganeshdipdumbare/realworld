@@ -22,7 +22,7 @@
 	<div class="container mx-auto flex items-center justify-between">
 		<div class="flex items-center space-x-2">
 			<a href="/" class="cursor-pointer">
-				<img src="/favicon.png" alt="Logo" class="h-auto w-10" />
+				<img src="/favicon.png" alt="Logo" class="h-auto w-20" />
 			</a>
 		</div>
 		<div class="space-x-4">
